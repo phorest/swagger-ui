@@ -6,6 +6,7 @@ var clean = require('gulp-clean');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
+var awspublish = require('gulp-awspublish');
 var less = require('gulp-less');
 var handlebars = require('gulp-handlebars');
 var wrap = require('gulp-wrap');
@@ -22,6 +23,8 @@ var banner = ['/**',
   ' * @license <%= pkg.license %>',
   ' */',
   ''].join('\n');
+
+//var aws = JSON.parse(fs.readFileSync('~/.aws/credentials')); // reading aws config file
 
 /**
  * Clean ups ./dist folder
@@ -134,4 +137,36 @@ function log(error) {
 
 
 gulp.task('default', ['dist', 'copy']);
-gulp.task('serve', ['connect', 'watch']);
+gulp.task('serve', ['dist', 'copy', 'connect', 'watch']);
+
+gulp.task('publish', function() {
+
+    // create a new publisher using S3 options
+    // http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#constructor-property
+    var publisher = awspublish.create({
+        region: 'eu-west-1',
+        params: {
+            Bucket: 'phorest-developer-docs'
+        }
+    });
+
+    // define custom headers
+    var headers = {
+        'Cache-Control': 'max-age=315360000, no-transform, public'
+        // ...
+    };
+
+    return gulp.src('./dist/**')
+        // gzip, Set Content-Encoding headers and add .gz extension
+        //.pipe(awspublish.gzip({ ext: '.gz' }))
+
+        // publisher will add Content-Length, Content-Type and headers specified above
+        // If not specified it will set x-amz-acl to public-read by default
+        .pipe(publisher.publish(headers))
+
+        // create a cache file to speed up consecutive uploads
+        .pipe(publisher.cache())
+
+        // print upload updates to console
+        .pipe(awspublish.reporter());
+});

@@ -26,8 +26,13 @@ JSON editor configuration example:
                 sorter: "alpha",
 ```
 
-Give it a [try](http://swaggerui.herokuapp.com/?url=http://petstore.swagger.io/v2/swagger.json) and enter your own swagger definition.
+## Run locally
+`npm install`
+`./node_modules/gulp/bin/gulp.js serve`
 
+## Deployment
+Publishes to s3 bucket `phorest-developer-docs`
+`./node_modules/gulp/bin/gulp.js publish`
 
 ## Disclaimer
 

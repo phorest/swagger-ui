@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Swagger explorer</title>
+    <title>Phorest API</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -46,7 +46,8 @@
             if (url && url.length > 1) {
                 url = decodeURIComponent(url[1]);
             } else {
-                url = window.location.toString().replace(/\/*#?.*/, '/swagger.json');
+                //todo set as prod
+                url = "https://api-gateway-staging.phorest.com/third-party-api-server/v2/api-docs";
             }
 
             window.swaggerUi = new SwaggerUi({
@@ -69,7 +70,7 @@
                     });
 
                     if (swaggerUi.options.url) {
-                        $('#input_baseUrl').val(swaggerUi.options.url);
+                        $('#input_baseUrl').val("https://api-gateway-staging.phorest.com/third-party-api-server/v2/api-docs");
                     }
                     if (swaggerUi.options.apiKey) {
                         $('#input_apiKey').val(swaggerUi.options.apiKey);
@@ -209,13 +210,11 @@
                 <button type="button" data-toggle="collapse" data-target="#navbar-collapse" class="navbar-toggle"><span
                         class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span
                         class="icon-bar"></span><span class="icon-bar"></span></button>
-                <h1 class="navbar-brand"><a href="http://swagger.io"><span>swagger explorer</span></a></h1>
+                <h1 class="navbar-brand"><a href="https://develper.phorest.com"><span>Phorest API</span></a></h1>
             </div>
             <div id="navbar-collapse" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-left">
-                    <li class="li-why"><a href="http://swagger.io" style="font-size: 25px; padding-left: 0px">Swagger
-                        explorer</a></li>
-
+                    <li class="li-why"><a href="https://developer.phorest.com" style="font-size: 25px; padding-left: 0px">Phorest API explorer</a></li>
                 </ul>
             </div>
         </div>
