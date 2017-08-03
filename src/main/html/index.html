@@ -47,7 +47,7 @@
                 url = decodeURIComponent(url[1]);
             } else {
                 //todo set as prod
-                url = "https://api-gateway-staging.phorest.com/third-party-api-server/v2/api-docs";
+                url = "https://api-gateway-eu.phorest.com/third-party-api-server/v2/api-docs";
             }
 
             window.swaggerUi = new SwaggerUi({
@@ -70,7 +70,7 @@
                     });
 
                     if (swaggerUi.options.url) {
-                        $('#input_baseUrl').val("https://api-gateway-staging.phorest.com/third-party-api-server/v2/api-docs");
+                        $('#input_baseUrl').val("https://api-gateway-eu.phorest.com/third-party-api-server/v2/api-docs");
                     }
                     if (swaggerUi.options.apiKey) {
                         $('#input_apiKey').val(swaggerUi.options.apiKey);
