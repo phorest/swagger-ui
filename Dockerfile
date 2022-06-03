@@ -17,6 +17,7 @@ RUN     ln -s /usr/bin/nodejs /usr/local/bin/node
 
 WORKDIR /build
 ADD     package.json    /build/package.json
+RUN     npm config set strict-ssl false
 RUN     npm install
 ADD     .   /build
 CMD     ./node_modules/gulp/bin/gulp.js serve
