@@ -31,8 +31,12 @@ JSON editor configuration example:
 `./node_modules/gulp/bin/gulp.js serve`
 
 ## Deployment
+
+To deploy the project please use the [Jekins Deploy Job](https://jenkins.internal.phorest.com/job/phorest-api-docs-release/) using the VPN
+<!--
 Publishes to s3 bucket `phorest-developer-docs`
 `./node_modules/gulp/bin/gulp.js publish`
+-->
 
 ## Disclaimer
 
